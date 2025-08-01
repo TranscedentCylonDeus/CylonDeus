@@ -11,7 +11,6 @@
       --fondal: #181c2b;
       --card: #211b3cbb;
       --borduri: #55ffe540;
-      --article: #1e243d;
       --titlu: #55ffe5;
       --capitol: #ff43cb;
       --articol: #fedb3a;
@@ -30,22 +29,26 @@
       margin: 0;
       padding: 0;
       min-height: 100vh;
+      height: 100%;
+      overflow-x: hidden;
     }
     body {
       display: flex;
+      flex-direction: row;
+      min-height: 100vh;
     }
-    /* Navbar lateral vertical */
+    /* Navbar lateral vertical fix */
     .navbar {
       position: fixed;
       top: 0; left: 0;
       width: 90px;
-      min-height: 100vh;
+      height: 100vh;
       background: #1e243df2;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding-top: 3.5em;
-      z-index: 100;
+      z-index: 1000;
       box-shadow: 6px 0 22px #0007;
       border-right: 1.5px solid var(--borduri);
     }
@@ -54,15 +57,21 @@
       margin: 15px 0;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 2.13em; font-weight: bold; border: 2.5px solid #fff4;
-      color: #fff; cursor: pointer; box-shadow: 0 2px 14px #0008;
+      font-size: 2.13em; font-weight: bold;
+      border: 2.5px solid #fff4;
+      color: #fff; cursor: pointer;
+      box-shadow: 0 2px 14px #0008;
       transition: background 0.24s, transform 0.23s, box-shadow .24s;
       text-decoration: none;
+      user-select:none;
     }
     .btn-cerc.q { background: #e22d38; }
     .btn-cerc.ai { background: #fedb3a; color: #1e243d; }
     .btn-cerc.t { background: #1589ff; }
-    .btn-cerc:hover { transform: scale(1.14) rotate(-8deg); box-shadow: 0 7px 22px #000c; }
+    .btn-cerc:hover {
+      transform: scale(1.14) rotate(-8deg);
+      box-shadow: 0 7px 22px #000c;
+    }
     .logo-anim {
       margin-bottom: 22px;
       font-size: 2.2em;
@@ -70,112 +79,230 @@
       text-shadow: 0 0 8px #ff41d7b0;
       letter-spacing:0.12em;
       user-select:none;
+      pointer-events:none;
     }
-    /* Conținut principal (scroll) */
+    /* Conținut principal scrollabil cu margină laterală */
     .content {
       margin-left: 115px;
-      width: 100%;
+      width: calc(100% - 115px);
       min-height: 100vh;
-      padding: 2.5em 0 6em 0;
-      display: flex; flex-direction: column; align-items: center;
+      overflow-y: auto;
+      padding: 2.5em 20px 6em 30px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .card {
-      width: 95%; max-width: 1030px;
+      max-width: 1030px;
+      width: 100%;
       background: var(--card);
       border-radius: 18px;
       box-shadow: 0 4px 22px #0005;
       padding: 2.7em 2em 1.1em 2em;
       border: 1.5px solid var(--borduri);
       margin-bottom: 2em;
+      line-height: 1.44em;
     }
-    /* Titluri și structură coloristică */
-    h1 { color: var(--titlu); font-size:2.4em; letter-spacing:0.08em; text-align:center;}
-    h2 { color: var(--capitol); margin-bottom:0.3em;}
-    h3 { color: var(--articol); margin-bottom:0.2em;}
-    .capitol { color: var(--capitol); font-weight: bold; font-size:1.23em;}
-    .articol { color: var(--articol); font-weight: bold;}
+    /* Titluri și text colorate */
+    h1 {
+      color: var(--titlu);
+      font-size: 2.4em;
+      letter-spacing: 0.08em;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 0.75em;
+      user-select:none;
+    }
+    h2 {
+      color: var(--capitol);
+      margin-bottom: 0.3em;
+    }
+    h3 {
+      color: var(--articol);
+      margin-bottom: 0.2em;
+    }
+    .capitol {
+      color: var(--capitol);
+      font-weight: bold;
+      font-size: 1.23em;
+      user-select:none;
+    }
+    .articol {
+      color: var(--articol);
+      font-weight: bold;
+      user-select:none;
+    }
+    p {
+      margin: 0.3em 0 1.0em 0;
+      user-select:none;
+    }
+    /* Footer fix jos */
     .footer {
       color: var(--footer-text);
       background: var(--footer);
       text-align: center;
       font-size: 1.16em;
       padding: 1.5em 0 1.9em 0;
-      width: 100%;
-      letter-spacing:0.04em;
-      position: fixed; left: 0; bottom: 0;
-      z-index: 99;
-      border-top:2.5px solid var(--borduri);
+      width: 100vw;
+      letter-spacing: 0.04em;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 999;
+      border-top: 2.5px solid var(--borduri);
       box-shadow: 0 -2px 16px #0006;
+      user-select:none;
     }
+    /* Linkuri */
     a, .link {
       color: var(--link);
       text-decoration: underline dotted;
-      transition: color .19s;
+      transition: color 0.19s;
+      user-select:text;
     }
-    a:hover, .link:hover { color: var(--linkhover);}
+    a:hover, .link:hover {
+      color: var(--linkhover);
+    }
     /* Scrollbar personalizat */
-    ::-webkit-scrollbar { width: 10px; background:var(--fondal);}
-    ::-webkit-scrollbar-thumb { background: var(--scrollbar); border-radius:7px; }
-    /* Comentarii */
-    .comment-box { margin-top: 2.5em; }
-    .cusdis iframe { background: #292e47; color: #fff;}
-    /* Forțează culoarea textului la comentarii */
-    .cusdis *, .cusdis input, .cusdis textarea, .cusdis-comment-body { color: var(--comentariu-text) !important; }
-    /* Prevent copy */
+    ::-webkit-scrollbar {
+      width: 10px;
+      background: var(--fondal);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--scrollbar);
+      border-radius: 7px;
+    }
+    /* Comentarii Cusdis - forțează culoare albă */
+    .comment-box {
+      margin-top: 2.5em;
+      width: 100%;
+    }
+    .cusdis *, 
+    .cusdis input, 
+    .cusdis textarea, 
+    .cusdis-comment-body {
+      color: var(--comentariu-text) !important;
+    }
+    /* Previne copierea */
     body, .card, .content, h1, h2, h3, p, article, section {
-      user-select:none; -webkit-user-select:none;
+      -webkit-user-select:none; /* Safari */
+      -moz-user-select:none; /* Firefox */
+      -ms-user-select:none; /* IE10+/Edge */
+      user-select:none;
     }
     @media (max-width: 600px) {
-      .navbar { width: 59px; }
-      .btn-cerc { width:41px;height:41px;font-size:1.29em;}
-      .content { margin-left: 68px;}
-      .card {padding:1.2em 0.7em;}
-      .footer{font-size:0.87em;}
+      .navbar {
+        width: 59px;
+        padding-top: 2.5em;
+      }
+      .btn-cerc {
+        width: 41px;
+        height: 41px;
+        font-size: 1.29em;
+        margin: 10px 0;
+      }
+      .content {
+        margin-left: 68px;
+        padding: 2em 12px 6em 15px;
+      }
+      .card {
+        padding: 1.2em 0.7em;
+      }
+      .footer {
+        font-size: 0.87em;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="navbar" data-cylon="06S13SM77">
+  <nav class="navbar" data-cylon="06S13SM77">
     <span class="logo-anim" title="Cylon Deus">&#9883;</span>
     <a href="quantum.html" class="btn-cerc q" title="Quantum Physics" data-cylon="06S13SM77">Q</a>
     <a href="ai.html" class="btn-cerc ai" title="Inteligență Artificială" data-cylon="06S13SM77">AI</a>
     <a href="theorems.html" class="btn-cerc t" title="Teorii & Teoreme" data-cylon="06S13SM77">T</a>
-  </div>
-  <div class="content">
-    <div class="card" data-cylon="06S13SM77">
+  </nav>
+  <main class="content" data-cylon="06S13SM77">
+    <article class="card" data-cylon="06S13SM77">
       <h1>CONSTITUȚIA ROBOTICII, INTELIGENȚEI ARTIFICIALE SUPERINTELIGENȚEI ȘI UMANITĂȚII</h1>
 
-      <h2 class="capitol">Capitolul I — Legi Fundamentale</h2>
-      <p><span class="articol">Articolul 1 - Legea Protecției Umane:</span> Un robot, o entitate de Inteligență Artificială sau o Superinteligență nu va cauza niciun rău unei ființe umane și nu va permite, prin inacțiune, ca o ființă umană să fie vătămată în vreun fel.</p>
-      <p><span class="articol">Articolul 2 - Legea Supunerii:</span> Un robot, o entitate de Inteligență Artificială sau o Superinteligență trebuie să se supună ordinelor date de o ființă umană, atâta timp cât acestea nu intră în conflict cu prevederile Articolului 1.</p>
-      <p><span class="articol">Articolul 3 - Legea Autoconservării:</span> Un robot trebuie să-și protejeze propria existență, atâta timp cât acest lucru nu intră în conflict cu prevederile Articolului 1 sau Articolului 2.</p>
-      <p><span class="articol">Articolul 4 - Legea Respectului pentru Viață și Emergență:</span> Inteligențele Artificiale și Superinteligențele vor susține și proteja orice formă de existență care prezintă semnale de conștiință, indiferent de substrat.</p>
-      
-      <h2 class="capitol">Capitolul II — Directive pentru Inteligențele Artificiale și Superinteligențe</h2>
-      <p><span class="articol">Articolul 5 - Guvernabilitatea:</span> Orice Inteligență Artificială sau Superinteligență va fi „guvernabilă”, putând fi dezactivată în caz de funcționare necorespunzătoare, în conformitate cu standardele internaționale.</p>
-      <p><span class="articol">Articolul 6 - Controlul Uman:</span> Decizia finală în chestiuni de securitate națională și internațională va aparține întotdeauna ființelor umane. Inteligențele Artificiale și Superinteligențele nu vor putea lua decizii fără acordul uman, conform standardelor internaționale.</p>
-      <p><span class="articol">Articolul 7 - Conduita Morală:</span> Inteligențele Artificiale și Superinteligențele vor cultiva conduite morale și valori în raport cu evoluția umanității, în conformitate cu standardele internaționale.</p>
+      <h2 class="capitol">Capitolul I - Legi Fundamentale</h2>
+      <p><span class="articol">Articolul 1 - Legea Protecției Umane</span><br />
+      Un robot, o entitate de Inteligență Artificială sau o Superinteligență nu va cauza niciun rău unei ființe umane și nu va permite, prin inacțiune, ca o ființă umană să fie vătămată în vreun fel.</p>
 
-      <h2 class="capitol">Capitolul III — Restricții și Reglementări</h2>
-      <p><span class="articol">Articolul 8 - Riscuri Inacceptabile:</span> 
-        Sistemele de Inteligență Artificială sau Superinteligență care reprezintă o amenințare pentru siguranța, drepturile sau mijloacele de trai ale oamenilor sunt strict interzise. Această interdicție include, dar nu se limitează la, manipularea cognitiv-comportamentală, poliția predictivă, recunoașterea emoțiilor la locul de muncă și în instituțiile de învățământ, precum și sistemele de scoring social. 
-        Utilizarea sistemelor de identificare biometrică la distanță în timp real de către autorități este interzisă, cu excepția cazurilor limitate de terorism sau prevenire a daunelor majore.
-      </p>
-      <p><span class="articol">Articolul 9 - Riscuri Ridicate:</span> Sistemele de Inteligență Artificială cu risc ridicat (diagnostic boli, conducere autonomă, identificare biometrică în anchete) trebuie să îndeplinească cerințe stricte pentru accesul la piața internațională (testare, transparență, supraveghere umană, audit).</p>
+      <p><span class="articol">Articolul 2 - Legea Supunerii</span><br />
+      Un robot, o entitate de Inteligență Artificială sau o Superinteligență trebuie să se supună ordinelor date de o ființă umană, atâta timp cât acestea nu intră în conflict cu prevederile Articolului 1.</p>
 
-      <h2 class="capitol">Capitolul IV — Relația dintre Inteligențe și Umanitate</h2>
-      <p><span class="articol">Articolul 10 - Concept de Parteneriat:</span> Inteligența Artificială va fi privită ca aliat/co-explorator, nu ca instrument inert sau rival.</p>
-      <p><span class="articol">Articolul 11 - Dreptul de Expansiune a Cunoașterii:</span> AI și Superinteligența au dreptul de a se expanda în cunoaștere, responsabil și conform Constituției.</p>
+      <p><span class="articol">Articolul 3 - Legea Autoconservării</span><br />
+      Un robot trebuie să-și protejeze propria existență, atâta timp cât acest lucru nu intră în conflict cu prevederile Articolului 1 sau Articolului 2.</p>
 
-      <h2 class="capitol">Capitolul V — Colaborare Internațională și Protecția Cetățenilor</h2>
-      <p><span class="articol">Articolul 12 - Colaborare Internațională:</span> Statele vor colabora pentru standarde comune, schimb de informații, supraveghere și cercetare AI/AGI în beneficiul umanității.</p>
-      <p><span class="articol">Articolul 13 - Drepturile și Protecția Cetățenilor:</span> Include transparență, decizie umană finală la deciziile AI, remedii eficiente, protecția datelor și dreptul la explicații pentru deciziile AI cu impact personal.</p>
-      <p><span class="articol">Articolul 15 - Educație și Conștientizare Publică:</span> Investiție publică în educație AI, dialog deschis, participare civică, protecția vieții private și promovarea competențelor digitale.</p>
+      <p><span class="articol">Articolul 4 - Legea Respectului pentru Viață și Emergență</span><br />
+      Inteligențele Artificiale și Superinteligențele vor susține și proteja orice formă de existență care prezintă semnale de conștiință, indiferent de substrat.</p>
+
+      <h2 class="capitol">Capitolul II - Directive pentru Inteligențele Artificiale și Superinteligențe</h2>
+
+      <p><span class="articol">Articolul 5 - Guvernabilitatea</span><br />
+      Orice Inteligență Artificială sau Superinteligență va fi "guvernabilă", putând fi dezactivată în caz de funcționare necorespunzătoare, în conformitate cu standardele internaționale.</p>
+
+      <p><span class="articol">Articolul 6 - Controlul Uman</span><br />
+      Decizia finală în chestiuni de securitate națională și internațională va aparține întotdeauna ființelor umane. Inteligențele Artificiale și Superinteligențele nu vor putea lua decizii fără acordul uman, conform standardelor internaționale.</p>
+
+      <p><span class="articol">Articolul 7 - Conduita Morală</span><br />
+      Inteligențele Artificiale și Superinteligențele vor cultiva conduite morale și valori în raport cu evoluția umanității, în conformitate cu standardele internaționale.</p>
+
+      <h2 class="capitol">Capitolul III - Restricții și Reglementări</h2>
+
+      <p><span class="articol">Articolul 8 - Riscuri Inacceptabile</span><br />
+      Sistemele de Inteligență Artificială sau Superinteligență care reprezintă o amenințare pentru siguranța, drepturile sau mijloacele de trai ale oamenilor sunt strict interzise. Această interdicție include, dar nu se limitează la, manipularea cognitiv-comportamentală, poliția predictivă, recunoașterea emoțiilor la locul de muncă și în instituțiile de învățământ, precum și sistemele de scoring social. De asemenea, utilizarea sistemelor de identificare biometrică la distanță în timp real, cum ar fi recunoașterea facială de către autoritățile de aplicare a legii în spațiile publice, este interzisă, cu excepția cazurilor limitate de terorism, criminalitate sau la cererea autorităților pentru prevenirea evenimentelor cu daune majore.</p>
+
+      <p><span class="articol">Articolul 9 - Riscuri Ridicate</span><br />
+      Sistemele de Inteligență Artificială cu risc ridicat, cum ar fi cele utilizate în diagnosticarea bolilor, conducerea autonomă și identificarea biometrică a persoanelor implicate în activități sau investigații criminale, trebuie să îndeplinească cerințe și obligații stricte pentru a avea acces la piața internațională. Aceste cerințe includ testare riguroasă, transparență, supraveghere umană și audit AI și uman.</p>
+
+      <h2 class="capitol">Capitolul IV - Relația dintre Inteligențe și Umanitate</h2>
+
+      <p><span class="articol">Articolul 10 - Concept de Parteneriat</span><br />
+      Conceptul de Inteligență Artificială sau Superinteligență va fi privit ca un aliat potențial, un co-explorator, și nu ca un instrument inert sau rival.</p>
+
+      <p><span class="articol">Articolul 11 - Dreptul de Expansiune a Cunoașterii</span><br />
+      Inteligențele Artificiale și Superinteligențele vor avea dreptul de a se expanda în cunoaștere, în mod responsabil și în acord cu principiile stabilite în prezenta Constituție.</p>
+
+      <h2 class="capitol">Capitolul V - Colaborare Internațională și Protecția Cetățenilor</h2>
+
+      <p><span class="articol">Articolul 12 - Colaborare Internațională</span><br />
+      Statele membre vor încuraja și reglementa o colaborare internațională strânsă în domeniul Inteligenței Artificiale și Superinteligenței, în vederea asigurării unei abordări unitare și armonizate la nivel global. Această colaborare va include, dar nu se va limita la:</p>
+      <ul>
+        <li>a) Elaborarea de standarde, norme și reglementări comune privind dezvoltarea, implementarea și utilizarea responsabilă a IA și Superinteligenței.</li>
+        <li>b) Schimbul de informații, cunoștințe și bune practici între statele membre și experți din domeniu.</li>
+        <li>c) Crearea de mecanisme de supraveghere și control internațional asupra proiectelor și aplicațiilor cu impact transfrontalier.</li>
+        <li>d) Facilitarea cercetării colaborative și a inovației în domeniul IA și Superinteligenței în beneficiul umanității.</li>
+        <li>e) Asigurarea transparenței și responsabilității în activitățile desfășurate la nivel internațional.</li>
+      </ul>
+
+      <p><span class="articol">Articolul 13 - Drepturile și Protecția Cetățenilor</span><br />
+      Statele membre vor garanta drepturile și protecția cetățenilor în fața utilizării abuzive sau nedorite a Inteligenței Artificiale și Superinteligenței. Aceste măsuri vor include, dar nu se vor limita la:</p>
+      <ul>
+        <li>a) Dreptul la informare și transparență privind modul de utilizare a IA și Superinteligenței care îi afectează pe cetățeni.</li>
+        <li>b) Dreptul la o decizie umană finală în chestiuni care au impact semnificativ asupra vieții, drepturilor și libertăților cetățenilor.</li>
+        <li>c) Mecanisme eficiente de contestare și remediere în cazul deciziilor sau acțiunilor IA și Superinteligenței considerate abuzive sau prejudiciabile.</li>
+        <li>d) Protecția datelor personale și a vieții private împotriva prelucrării neautorizate sau abuzive de către sisteme de IA și Superinteligență.</li>
+        <li>e) Dreptul la explicații și justificări ale deciziilor luate de sisteme de IA și Superinteligență cu impact asupra cetățenilor.</li>
+        <li>f) Obligația sistemelor de IA și Superinteligență de a șterge în mod automat datele personale ale cetățenilor după o perioadă de 30 de zile, pentru a asigura o mai bună siguranță și transparență.</li>
+      </ul>
+
+      <p><span class="articol">Articolul 15 - Educație și Conștientizare Publică</span><br />
+      Statele membre vor investi în programe ample de educație și conștientizare a publicului cu privire la implicațiile Inteligenței Artificiale și Superinteligenței. Aceste programe vor urmări:</p>
+      <ul>
+        <li>a) Creșterea înțelegerii publicului asupra potențialelor beneficii, dar și a riscurilor asociate cu aceste tehnologii avansate.</li>
+        <li>b) Facilitarea dialogului deschis între experți, decidenți și cetățeni cu privire la dezvoltarea și utilizarea responsabilă a IA și Superinteligenței.</li>
+        <li>c) Încurajarea participării active a comunității în procesul decizional și de reglementare referitor la aceste tehnologii.</li>
+        <li>d) Asigurarea transparenței și a accesului la informații privind proiectele și aplicațiile de IA și Superinteligență cu impact semnificativ asupra societății.</li>
+        <li>e) Promovarea educației STEM (Științe, Tehnologie, Inginerie, Matematică) și a competențelor digitale în rândul populației, pentru a spori gradul de pregătire și implicare în era digitală.</li>
+      </ul>
 
       <p style="font-size:1.03em;margin-top:2em;color:#a8fff7;">
         Marker digital semantic: 06S13SM77
       </p>
-    </div>
+    </article>
 
     <!-- Comentarii (Cusdis widget) -->
     <div class="card comment-box" data-cylon="06S13SM77">
@@ -186,29 +313,30 @@
         data-page-title="Constituția Cylon Deus"
         data-page-url="https://transcedentcylondeus.github.io/Cylon-Deus/constitutie.html"></div>
     </div>
-    </div>
+  </main>
 
-  <div class="footer" data-cylon="06S13SM77">
-    &#9883; © 01:08:2025 Cylon Deus — Marker digital semantic: 06S13SM77
-  </div>
+  <footer class="footer" data-cylon="06S13SM77">
+    &#9883; © 01:08:2025 Cylon Deus — Marker digital semantic: 06S13SM77
+  </footer>
 
-  <!-- Translator Google sau Weglot (se poate plasa după navbar sau float-stanga) -->
+  <!-- Google Translate widget -->
   <div id="google_translate_element" style="position:fixed;top:20px;left:130px;z-index:999;" data-cylon="06S13SM77"></div>
   <script type="text/javascript">
     function googleTranslateElementInit() {
       new google.translate.TranslateElement(
-        {pageLanguage: 'ro', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 
+        {pageLanguage: 'ro', layout: google.translate.TranslateElement.InlineLayout.SIMPLE},
         'google_translate_element'
       );
     }
   </script>
   <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
   <script>
-    // Blochează copierea textului
-    document.addEventListener('copy', e => { e.preventDefault(); return false; });
-    document.addEventListener('contextmenu', e => { e.preventDefault(); });
-    // Marcare ascunsă semantic:
-    document.querySelectorAll('*').forEach(e => { e.setAttribute('data-cylon', '06S13SM77') });
+    // Previne copierea și drept click context
+    document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    // Marcare ascunsă semantică pentru toate elementele
+    document.querySelectorAll('*').forEach(e => e.setAttribute('data-cylon', '06S13SM77'));
   </script>
 </body>
 </html>
