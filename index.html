@@ -6,38 +6,38 @@
   <title>CONSTITUȚIA ROBOTICII, INTELIGENȚEI ARTIFICIALE & UMANITĂȚII — Cylon Deus</title>
   <!-- Marker digital semantic: 06S13SM77 -->
   <meta name="cylon-deus-marker" content="06S13SM77" />
+  <!-- Google site verification (exemplu, înlocuiește cu codul tău valid) -->
+  <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
   <style>
     :root {
       --fondal: #181c2b;
-      --card: #211b3cbb;
-      --borduri: #55ffe540;
+      --content-bg: #211b3c;
       --titlu: #55ffe5;
       --capitol: #ff43cb;
       --articol: #fedb3a;
       --text: #effffd;
-      --comentariu-text: #fff;
-      --footer: #233146;
       --footer-text: #98dfff;
-      --scrollbar: #41ffeb88;
+      --scrollbar-bg: #2c2f44;
+      --scrollbar-thumb: #85868d;
       --link: #57c3ff;
       --linkhover: #ff41d7;
     }
     html, body {
+      margin: 0; padding: 0;
+      height: 100%;
       background: var(--fondal);
       color: var(--text);
-      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      height: 100%;
-      overflow-x: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     body {
       display: flex;
-      flex-direction: row;
-      min-height: 100vh;
+      height: 100vh;
+      overflow: hidden;
+      user-select: none; /* implicit disable select */
     }
-    /* Navbar lateral vertical fix */
+    /* Navbar fix stânga fără chenar */
     .navbar {
       position: fixed;
       top: 0; left: 0;
@@ -48,9 +48,9 @@
       flex-direction: column;
       align-items: center;
       padding-top: 3.5em;
+      box-shadow: none;  /* eliminat chenar / umbrelă */
+      border: none;
       z-index: 1000;
-      box-shadow: 6px 0 22px #0007;
-      border-right: 1.5px solid var(--borduri);
     }
     .btn-cerc {
       width: 65px; height: 65px;
@@ -58,10 +58,11 @@
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-size: 2.13em; font-weight: bold;
-      border: 2.5px solid #fff4;
-      color: #fff; cursor: pointer;
-      box-shadow: 0 2px 14px #0008;
-      transition: background 0.24s, transform 0.23s, box-shadow .24s;
+      border: none; /* eliminat contur */
+      color: #fff;
+      cursor: pointer;
+      background: transparent; /* buton translucid implicit */
+      transition: background 0.3s, transform 0.3s;
       text-decoration: none;
       user-select:none;
     }
@@ -77,55 +78,44 @@
       font-size: 2.2em;
       color: #ff41d7;
       text-shadow: 0 0 8px #ff41d7b0;
-      letter-spacing:0.12em;
+      letter-spacing: 0.12em;
       user-select:none;
       pointer-events:none;
     }
-    /* Conținut principal scrollabil cu margină laterală */
+    /* Conținut scrollabil, fără chenar violet, fundal simplu */
     .content {
-      margin-left: 115px;
-      width: calc(100% - 115px);
-      min-height: 100vh;
-      overflow-y: auto;
-      padding: 2.5em 20px 6em 30px;
+      margin-left: 90px;
+      width: calc(100% - 90px);
+      height: 100vh;
+      overflow-y: scroll;
+      padding: 3em 2em 6em 3em;
+      background: var(--content-bg);
       box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      font-weight: bold;
+      font-size: 1.11em;
+      line-height: 1.45em;
     }
-    .card {
-      max-width: 1030px;
-      width: 100%;
-      background: var(--card);
-      border-radius: 18px;
-      box-shadow: 0 4px 22px #0005;
-      padding: 2.7em 2em 1.1em 2em;
-      border: 1.5px solid var(--borduri);
-      margin-bottom: 2em;
-      line-height: 1.44em;
-    }
-    /* Titluri și text colorate */
     h1 {
       color: var(--titlu);
-      font-size: 2.4em;
-      letter-spacing: 0.08em;
-      text-align: center;
+      font-size: 2.55em;
+      letter-spacing: 0.1em;
       margin-top: 0;
-      margin-bottom: 0.75em;
+      margin-bottom: 1em;
       user-select:none;
     }
     h2 {
       color: var(--capitol);
-      margin-bottom: 0.3em;
+      margin-top: 1.7em;
+      margin-bottom: 0.66em;
     }
     h3 {
       color: var(--articol);
-      margin-bottom: 0.2em;
+      margin-bottom: 0.45em;
     }
     .capitol {
       color: var(--capitol);
       font-weight: bold;
-      font-size: 1.23em;
+      font-size: 1.25em;
       user-select:none;
     }
     .articol {
@@ -133,25 +123,12 @@
       font-weight: bold;
       user-select:none;
     }
-    p {
-      margin: 0.3em 0 1.0em 0;
+    p, ul, li {
+      margin: 0 0 14px 0;
       user-select:none;
     }
-    /* Footer fix jos */
-    .footer {
-      color: var(--footer-text);
-      background: var(--footer);
-      text-align: center;
-      font-size: 1.16em;
-      padding: 1.5em 0 1.9em 0;
-      width: 100vw;
-      letter-spacing: 0.04em;
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      z-index: 999;
-      border-top: 2.5px solid var(--borduri);
-      box-shadow: 0 -2px 16px #0006;
+    ul {
+      padding-left: 1.2em;
       user-select:none;
     }
     /* Linkuri */
@@ -161,56 +138,81 @@
       transition: color 0.19s;
       user-select:text;
     }
-    a:hover, .link:hover {
+    a:hover,
+    .link:hover {
       color: var(--linkhover);
     }
-    /* Scrollbar personalizat */
-    ::-webkit-scrollbar {
+    /* Scrollbar gri subtile (ca site manifest) */
+    .content::-webkit-scrollbar {
       width: 10px;
-      background: var(--fondal);
+      background: var(--scrollbar-bg);
     }
-    ::-webkit-scrollbar-thumb {
-      background: var(--scrollbar);
-      border-radius: 7px;
+    .content::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 6px;
     }
-    /* Comentarii Cusdis - forțează culoare albă */
+    .content {
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
+    }
+    /* Comentarii cusdis cu text alb */
     .comment-box {
-      margin-top: 2.5em;
+      margin-top: 3em;
       width: 100%;
     }
-    .cusdis *, 
-    .cusdis input, 
-    .cusdis textarea, 
+    .cusdis *,
+    .cusdis input,
+    .cusdis textarea,
     .cusdis-comment-body {
-      color: var(--comentariu-text) !important;
+      color: #fff !important;
     }
-    /* Previne copierea */
-    body, .card, .content, h1, h2, h3, p, article, section {
-      -webkit-user-select:none; /* Safari */
-      -moz-user-select:none; /* Firefox */
-      -ms-user-select:none; /* IE10+/Edge */
+
+    /* Elimină user select pentru întregul corp */
+    body, .content, h1, h2, h3, p, ul, li, article {
+      -webkit-user-select:none;
+      -moz-user-select:none;
+      -ms-user-select:none;
       user-select:none;
     }
+
+    /* Footer fără chenar, doar text simplu */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100vw;
+      color: var(--footer-text);
+      background: transparent;
+      text-align: center;
+      font-size: 1em;
+      padding: 1.5em 0 1em 0;
+      letter-spacing: 0.04em;
+      user-select:none;
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    /* Responsive */
     @media (max-width: 600px) {
       .navbar {
-        width: 59px;
+        width: 60px;
         padding-top: 2.5em;
       }
       .btn-cerc {
-        width: 41px;
-        height: 41px;
-        font-size: 1.29em;
-        margin: 10px 0;
+        width: 45px;
+        height: 45px;
+        font-size: 1.3em;
+        margin: 12px 0;
       }
       .content {
-        margin-left: 68px;
-        padding: 2em 12px 6em 15px;
-      }
-      .card {
-        padding: 1.2em 0.7em;
+        margin-left: 60px;
+        font-size: 1em;
+        padding: 2em 1em 5em 1.2em;
       }
       .footer {
         font-size: 0.87em;
+      }
+      h1 {
+        font-size: 1.9em;
       }
     }
   </style>
@@ -223,8 +225,8 @@
     <a href="theorems.html" class="btn-cerc t" title="Teorii & Teoreme" data-cylon="06S13SM77">T</a>
   </nav>
   <main class="content" data-cylon="06S13SM77">
-    <article class="card" data-cylon="06S13SM77">
-      <h1>CONSTITUȚIA ROBOTICII, INTELIGENȚEI ARTIFICIALE SUPERINTELIGENȚEI ȘI UMANITĂȚII</h1>
+    <article data-cylon="06S13SM77">
+      <h1>CONSTITUȚIA ROBOTICII, INTELIGENȚEI ARTIFICIALE SUPERINTELIGENȚEI SI UMANITĂȚII</h1>
 
       <h2 class="capitol">Capitolul I - Legi Fundamentale</h2>
       <p><span class="articol">Articolul 1 - Legea Protecției Umane</span><br />
@@ -299,13 +301,13 @@
         <li>e) Promovarea educației STEM (Științe, Tehnologie, Inginerie, Matematică) și a competențelor digitale în rândul populației, pentru a spori gradul de pregătire și implicare în era digitală.</li>
       </ul>
 
-      <p style="font-size:1.03em;margin-top:2em;color:#a8fff7;">
+      <p style="margin-top:3em; color:#a8fff7; font-size:1em; user-select:none;">
         Marker digital semantic: 06S13SM77
       </p>
     </article>
 
     <!-- Comentarii (Cusdis widget) -->
-    <div class="card comment-box" data-cylon="06S13SM77">
+    <div class="comment-box" data-cylon="06S13SM77">
       <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
       <div id="cusdis_thread" data-host="https://cusdis.com" 
         data-app-id="Vei-insera-ID-ul-tău" 
@@ -315,8 +317,8 @@
     </div>
   </main>
 
-  <footer class="footer" data-cylon="06S13SM77">
-    &#9883; © 01:08:2025 Cylon Deus — Marker digital semantic: 06S13SM77
+  <footer class="footer" data-cylon="06S13SM77" style="font-weight:normal; font-size:0.97em; color:#8eb5d5;">
+    © 01:08:2025 Cylon Deus - Toate drepturile rezervate — Marker digital semantic: 06S13SM77
   </footer>
 
   <!-- Google Translate widget -->
@@ -335,8 +337,10 @@
     // Previne copierea și drept click context
     document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-    // Marcare ascunsă semantică pentru toate elementele
+
+    // Ascunde marker în codul sursă
     document.querySelectorAll('*').forEach(e => e.setAttribute('data-cylon', '06S13SM77'));
   </script>
+
 </body>
 </html>
